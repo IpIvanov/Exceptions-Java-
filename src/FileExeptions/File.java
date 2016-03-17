@@ -14,6 +14,7 @@ public class File {
 	FileInputStream fstream = null;
 	BufferedReader br = null;
 	String strLine;
+	int lineNumber = 0;
 
 	public File(String fileName, String filePath) {
 		this.setFileName(fileName);
@@ -40,7 +41,7 @@ public class File {
 		// Open the file
 		fstream = new FileInputStream(pathToFile);
 		br = new BufferedReader(new InputStreamReader(fstream));
-		int lineNumber = 0;
+		lineNumber = 0;
 		// Read File Line By Line
 		while ((strLine = br.readLine()) != null) {
 			lineNumber++;
@@ -77,11 +78,11 @@ public class File {
 		}
 	}
 
-	public void printTextLine(String pathToFile) throws IOException {
+	public void printTextLines(String pathToFile) throws IOException {
 		// Open the file
 		fstream = new FileInputStream(pathToFile);
 		br = new BufferedReader(new InputStreamReader(fstream));
-		int lineNumber = 0;
+		lineNumber = 0;
 		// Read File Line By Line
 		System.out.println("Line     |    Content");
 		while ((strLine = br.readLine()) != null) {

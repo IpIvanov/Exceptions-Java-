@@ -10,7 +10,7 @@ public class Main {
 				"C:\\PRJ\\EclipseWorkspace\\Exceptions\\src\\FileExeptions\\textfile.txt");
 
 		System.out.println(fileObject.getFileName());
-		fileObject.printTextLine(fileObject.getFilePath());
+		fileObject.printTextLines(fileObject.getFilePath());
 		fileObject.readFromFile(fileObject.getFilePath());
 	}
 
