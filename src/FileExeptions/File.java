@@ -2,19 +2,17 @@ package FileExeptions;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.text.ParseException;
 
 public class File {
 
 	private String fileName;
 	private String filePath;
-	FileInputStream fstream = null;
-	BufferedReader br = null;
-	String strLine;
-	int lineNumber = 0;
+	private FileInputStream fstream = null;
+	private BufferedReader br = null;
+	private String strLine;
+	private int lineNumber = 0;
 
 	public File(String fileName, String filePath) {
 		this.setFileName(fileName);
@@ -46,11 +44,8 @@ public class File {
 		while ((strLine = br.readLine()) != null) {
 			lineNumber++;
 			try {
-				if (this.isParsable(strLine)) {
-					throw new ParseException(strLine, lineNumber);
-				}
-
-			} catch (ParseException e) {
+				Integer.parseInt(strLine);
+			} catch (NumberFormatException e) {
 				System.out.println("--------------------------");
 				this.handleParseEception(strLine, lineNumber);
 			}
@@ -60,15 +55,15 @@ public class File {
 		br.close();
 	}
 
-	public boolean isParsable(String strLine) throws FileNotFoundException {
-		boolean parsable = false;
-		try {
-			Integer.parseInt(strLine);
-		} catch (NumberFormatException e) {
-			parsable = true;
-		}
-		return parsable;
-	}
+	// public boolean isParsable(String strLine) {
+	// boolean parsable = false;
+	// try {
+	// Integer.parseInt(strLine);
+	// } catch (NumberFormatException e) {
+	// parsable = true;
+	// }
+	// return parsable;
+	// }
 
 	public void handleParseEception(String strLine, int lineNumber) {
 		if ("".equals(strLine)) {
